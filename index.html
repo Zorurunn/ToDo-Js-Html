@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoraemonPuzzle</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="conatainer">
+        <div class="bigCards">
+
+            <div class="todo">
+                <h1>TODO</h1>
+                <button class="addNewTask">Add Task</button>
+            </div>
+
+            <div class="hiddenAdd">
+                <h1>TODO-List</h1>
+                <form>
+                    title: <input id="title" type="text" />
+                    description: <input id="description" type="text">
+
+                    <label for="status">Status:</label>
+                    <select name="statuslist">
+                        <option value="in-progress">in progress</option>
+                        <option value="done">done</option>
+                    </select>
+
+
+                    <button class="task_submit" type="submit">Add Task</button>
+                </form>
+            </div>
+
+
+            <div class="in-progress">
+                <div class="in-progress-list"></div>
+            </div>
+
+
+            <div class="done">
+                <div class="donelist"></div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </div>
+    <script src="./js/app.js"></script>
+</body>
+
+</html>

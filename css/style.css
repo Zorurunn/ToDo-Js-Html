@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex-direction: column; */
+    flex-direction: row;
+    position: relative;
+}
+
+
+.bigCards {
+    display: flex;
+    gap: 10px;
+    border: 2px solid green;
+    width: 100%;
+}
+
+.todo {
+    border: 2px solid red;
+    flex-grow: 1;
+}
+
+.hiddenAdd {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.in-progress {
+    border: 2px solid red;
+    flex-grow: 1;
+}
+
+.done {
+    border: 2px solid red;
+    flex-grow: 1;
+}
