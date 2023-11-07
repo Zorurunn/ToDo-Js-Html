@@ -8,6 +8,7 @@ const hiddenAdd = document.querySelector('.hiddenAdd');
 const addNewTask = document.querySelector('.addNewTask');
 const form = document.querySelector("form")
 
+
 let data = [
     {
         title: "first render",
@@ -37,38 +38,71 @@ const render = () => {
         }
     })
     const removeButton = document.querySelectorAll('.delete');
-
     removeButton.forEach(element => {
         element.addEventListener('click', (event) => {
             event.preventDefault();
-            deleteTask(element);
+            const chosenTask = element.parentNode;
+            deleteTask(chosenTask);
         })
     });
+
+    const doneButton = document.querySelectorAll('.ok');
+    doneButton.forEach(element => {
+        element.addEventListener('click', (event) => {
+            event.preventDefault();
+            const chosenTask = element.parentNode;
+            doneTask(chosenTask);
+        })
+    });
+
 }
 
-
-
-
-const deleteTask = (deleteButton) => {
-    const chosenTask = deleteButton.parentNode;
-
+const deleteTask = (chosenTask) => {
     const newData = data.filter((item, index) => {
         return index !== Number(chosenTask.id)
-
     })
     setData(newData)
 }
 
+// asuuuu!!!!!!!!!!!!!!!
+const doneTask = (chosenTask) => {
+    let newData = data;
+    newData.forEach((item, index) => {
+        if (index === Number(chosenTask.id)) {
+            item.status = "done";
+        }
+    })
+
+    // let newData = (data.forEach((item, index) => {
+    //     if (index === Number(chosenTask.id)) {
+    //         item.status = "done";
+    //     }
+    // }));
+    setData(newData);
+}
+
 const Card = (props) => {
-    return `
+    if (props.status === "done") {
+        return `
         <div id='${props.deleteIndex}'>
-            <button class="ok" type="click">done</button>
             <h4>Title: ${props.title}</h4>
             <p>Description: ${props.description}</p>
-            <div>Status: ${props.status}</div>
+            <div class="statusClass">Status: ${props.status}</div>
             <button class="delete" type="click">delete</button>
         </div>
     `
+    } else {
+        return `
+        <div id='${props.deleteIndex}'>
+            <button class="ok" type="submit">done</button>
+            <h4>Title: ${props.title}</h4>
+            <p>Description: ${props.description}</p>
+            <div class="statusClass">Status: ${props.status}</div>
+            <button class="delete" type="click">delete</button>
+        </div>
+    `
+    }
+
 }
 
 addNewTask.addEventListener('click', (event) => {
@@ -88,32 +122,4 @@ form.addEventListener("submit", (event) => {
 
 })
 
-render()
-
-// taskSubmit.addEventListener('click', (event) => {
-//     event.preventDefault();
-//     if (taskTitle.value === '') return;
-//     addTask(taskTitle.value);
-//     taskTitle.value = '';
-// })
-
-// const addTask = (txt) => {
-//     const listItem = document.createElement('li');
-//     listItem.innerHTML = txt;
-//     const showTask = inProgressList.appendChild(listItem);
-//     console.log(showTask);
-
-//     // タスクに削除ボタンを付与
-//     const doneButton = document.createElement('button');
-//     doneButton.innerHTML = 'Done';
-//     listItem.appendChild(doneButton);
-
-//     doneButton.addEventListener('click', evt => {
-//         evt.preventDefault();
-//         doneTasks(doneButton);
-//     });
-//     hiddenAdd.style.display = "none";
-// }
-
-
-
+render();
