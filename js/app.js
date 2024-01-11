@@ -8,7 +8,6 @@ const hiddenAdd = document.querySelector('.hiddenAdd');
 const addNewTask = document.querySelector('.addNewTask');
 const form = document.querySelector("form")
 
-
 let data = [
     {
         title: "first render",
@@ -37,72 +36,40 @@ const render = () => {
 
         }
     })
+
     const removeButton = document.querySelectorAll('.delete');
+
     removeButton.forEach(element => {
         element.addEventListener('click', (event) => {
             event.preventDefault();
-            const chosenTask = element.parentNode;
-            deleteTask(chosenTask);
+            deleteTask(element);
         })
     });
-
-    const doneButton = document.querySelectorAll('.ok');
-    doneButton.forEach(element => {
-        element.addEventListener('click', (event) => {
-            event.preventDefault();
-            const chosenTask = element.parentNode;
-            doneTask(chosenTask);
-        })
-    });
-
 }
 
-const deleteTask = (chosenTask) => {
+
+
+
+const deleteTask = (deleteButton) => {
+    const chosenTask = deleteButton.parentNode;
+
     const newData = data.filter((item, index) => {
         return index !== Number(chosenTask.id)
+
     })
     setData(newData)
 }
 
-// asuuuu!!!!!!!!!!!!!!!
-const doneTask = (chosenTask) => {
-    let newData = data;
-    newData.forEach((item, index) => {
-        if (index === Number(chosenTask.id)) {
-            item.status = "done";
-        }
-    })
-
-    // let newData = (data.forEach((item, index) => {
-    //     if (index === Number(chosenTask.id)) {
-    //         item.status = "done";
-    //     }
-    // }));
-    setData(newData);
-}
-
 const Card = (props) => {
-    if (props.status === "done") {
-        return `
-        <div id='${props.deleteIndex}'>
+    return `
+        <div draggable="true" id='${props.deleteIndex}'>
+            <button class="ok" type="click">done</button>
             <h4>Title: ${props.title}</h4>
             <p>Description: ${props.description}</p>
-            <div class="statusClass">Status: ${props.status}</div>
+            <div>Status: ${props.status}</div>
             <button class="delete" type="click">delete</button>
         </div>
     `
-    } else {
-        return `
-        <div id='${props.deleteIndex}'>
-            <button class="ok" type="submit">done</button>
-            <h4>Title: ${props.title}</h4>
-            <p>Description: ${props.description}</p>
-            <div class="statusClass">Status: ${props.status}</div>
-            <button class="delete" type="click">delete</button>
-        </div>
-    `
-    }
-
 }
 
 addNewTask.addEventListener('click', (event) => {
@@ -122,4 +89,56 @@ form.addEventListener("submit", (event) => {
 
 })
 
-render();
+render()
+
+
+// inProgressList.forEach((element, index) => {
+
+
+
+
+
+// });
+
+
+data.forEach((element, index) => {
+    // element.addEventListener('dragstart', function (event) {
+    //     event.dataTransfer.setData("text/plain", event.target.id);
+    // })
+    console.log(element);
+
+    // element.addEventListener('dragstart', function (event) {
+
+    // })
+
+
+})
+
+
+// data.addEventListener('dragover', function (event) {
+//     if (event.target === this) {
+//         event.preventDefault();
+//     }
+// })
+// // set ID to draggable elements
+// draggables.forEach(element => {
+//     element.addEventListener('dragstart', (event) => {
+//         event.dataTransfer.setData("text/plain", event.target.id);
+//     })
+// });
+
+
+
+// doneList.addEventListener('drop', function (event) {
+//     // get drag started box index
+//     const id = event.dataTransfer.getData('text/plain');
+//     const draggable = document.getElementById(id);
+//     console.log(draggable);
+//     // let startBox = draggable.getAttribute(`dragStartBox`);
+// })
+
+// element.addEventListener('dragover', function (event) {
+//     if (event.target === this) {
+//         event.preventDefault();
+//     }
+// })
